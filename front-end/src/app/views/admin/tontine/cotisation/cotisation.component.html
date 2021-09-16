@@ -1,0 +1,159 @@
+<div class="flex flex-wrap mt-4">
+  <div class="w-full xl:w-6/12 mb-12 xl:mb-0 px-4">
+    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center">
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+            <h3 class="font-semibold text-base text-blueGray-700">Liste des adhérents</h3>
+          </div>
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-left">
+            <ng-select [(ngModel)]="InputDesignation" name="InputDesignation" placeholder="choisir une tontine"
+              (change)="checkDatas()">
+              <ng-option *ngFor="let tontine of tontines" [value]="tontine.designation + ' ' + tontine.cotisation">{{ tontine.designation }} |  {{ tontine.cotisation }} XAF
+              </ng-option>
+            </ng-select>
+          </div>
+        </div>
+        <div class="w-full text-center pt-4 text-blue-600 font-bold">
+          {{ date }}
+        </div>
+      </div>
+      <div class="block w-full overflow-x-auto">
+        <ng2-smart-table #table (rowSelect)="checkRowSelected(table.grid.dataSet.selectedRow.data)"
+          [settings]="settings" [source]="adherents"></ng2-smart-table>
+      </div>
+      
+    </div>
+      <button (click) = "cotiser()"
+        class="bg-red-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        type="button">
+        valider
+      </button>
+  </div>
+  <div class="w-full xl:w-6/12 px-4">
+    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+      <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center">
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+            <h3 class="font-semibold text-base text-blueGray-700">
+              Détails de la tontine
+            </h3>
+          </div>
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+            <button [routerLink]="['/admin/achat-tontine']" routerLinkActive="router-link-active" 
+              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button">
+              assigner la cotisation
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="blockw-full overflow-x-auto">
+        <form>
+          <div class="shadow overflow-hidden sm:rounded-md">
+            <div class="px-4 py-5 bg-white sm:p-6">
+              <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="first-name" class="block text-sm font-medium text-gray-700">Code</label>
+                  <input type="text" [(ngModel)]="inscription.code_tontine" disabled name="code_tontine"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Cotisation</label>
+                  <input type="text" name="cot" [(ngModel)]="cot" disabled
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Nbre cot.</label>
+                  <input type="text" [(ngModel)]="inscription.nbre_cot" disabled name="nbre_cot"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Montant Cot.</label>
+                  <input type="text" name="montant_cot" disabled [(ngModel)]="montant_cot"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Dettes</label>
+                  <input type="text" disabled name="dettes" [(ngModel)]="cotisation.dettes"
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium text-gray-700">Montant Versé</label>
+                  <input type="text" name="montantVerse" [(ngModel)]="cotisation.montantVerse" 
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="first-name" class="block text-sm font-medium text-gray-700">Total cotisé</label>
+                  <input type="text" disabled name="totalCotisation" [(ngModel)]="totalCotisation" 
+                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="block w-full overflow-x-auto">
+        <h3 class="px-4 py-3 font-bold text-base text-blueGray-700">
+          Liste des cotisations de la journée
+        </h3>
+        <table class="items-center w-full bg-transparent border-collapse">
+          <thead class="thead-light">
+            <tr>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Mat.
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Nom
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Prénom
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Cot.
+              </th>
+              <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Mont. Versé
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of rowsCotisations">
+              <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                {{ item?.matricule }}
+              </th>
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {{ item?.nom }}
+              </td>
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {{ item?.prenom }}
+              </td>
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {{ item?.cot }}
+              </td>
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                {{ item?.montantVerse }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,176 @@
+<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+  <div class="rounded-t bg-white mb-0 px-6 py-6">
+    <div class="text-center flex justify-between">
+      <h6 class="text-blueGray-700 text-xl font-bold">Liste des Adhérents</h6>
+
+      <button
+        class="bg-red-600 text-white active:bg-red-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button" id="btn-show">
+        Ajouter un adhérent
+      </button>
+
+      <div class="fixed z-10 inset-0 hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true" id="modal">
+        <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+          <div
+            class="inline-block align-bottom bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="w-full mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                     Ajoutez un Adhérent
+                  </h3>
+                  <div class="mt-5">
+                    <form [formGroup]="form">
+
+                      <div class="relative w-full mb-3">
+                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                          Matricule
+                        </label>
+                        <input type="text" formControlName="matricule"
+                          class="px-3 py-3 text-blueGray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          />
+                      </div>
+
+                      <div class="relative w-full mb-3">
+                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                          Nom
+                        </label>
+                        <input type="text" formControlName="nom"
+                          class="px-3 py-3 text-blueGray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          />
+                      </div>
+                      
+                      <div class="relative w-full mb-3">
+                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                          prénom
+                        </label>
+                        <input type="text" formControlName="prenom"
+                          class="px-3 py-3 text-blueGray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                      </div>
+
+                      <div class="relative w-full mb-3">
+                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                          Numéro de téléphone
+                        </label>
+                        <input type="text" formControlName="tel"
+                          class="px-3 py-3 text-blueGray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                      </div>
+
+                      <div class="relative w-full mb-3">
+                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                          Sexe
+                        </label>
+                        <ng-select formControlName="sexe">
+                          <ng-option value="masculin">Masculin</ng-option>
+                          <ng-option value="féminin">Féminin</ng-option>
+                        </ng-select>
+                      </div>
+
+                      <div class="relative w-full mb-3">
+                        <label class="block text-blueGray-600 text-xs font-bold mb-2" htmlFor="grid-password">
+                          Localisation
+                        </label>
+                        <input type="text" formControlName="localisation"
+                          class="px-3 py-3 text-blueGray-600 bg-gray-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <button type="button" (click)="save()"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                Enregistrer
+              </button>
+              <button type="button" id="cancel"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-8">
+    <div class="relative flex bg-white flex-col break-words mb-6 shadow-lg rounded-lg border-0 p-4">
+      <table class="items-center w-full bg-transparent border-collapse">
+        <thead>
+          <tr>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Matricule
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Nom
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Prénom
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Numéro de téléphone
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Sexe
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Localisation
+            </th>
+            <th
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+              Arrivé(e) le
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let member of members">
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 font-bold">
+              {{ member?.matricule }}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              {{ member?.nom }}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              {{ member?.prenom }}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              {{ member?.tel }}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              {{ member?.sexe }}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              {{ member?.localisation }}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+              {{ member?.created_at | date }}
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
