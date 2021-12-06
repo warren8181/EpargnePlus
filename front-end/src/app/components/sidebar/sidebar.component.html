@@ -65,7 +65,7 @@
               ? 'text-red-600 hover:text-red-700'
               : 'text-blueGray-700 hover:text-blueGray-500'
           "
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+            class="text-xs uppercase py-3 font-bold block">
             <i class="fas fa-users text-blueGray-300 mr-2 text-sm" [ngClass]="
             adminMembers.isActive ? 'opacity-75' : 'text-blueGray-300'
           "></i>
@@ -82,8 +82,8 @@
               ? 'text-red-600 hover:text-red-700'
               : 'text-blueGray-700 hover:text-blueGray-500'
           "
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-            <i class="fas fa-users text-blueGray-300 mr-2 text-sm" [ngClass]="
+            class="text-xs uppercase py-3 font-bold block">
+            <i class="fas fa-book text-blueGray-300 mr-2 text-sm" [ngClass]="
             adminInscription.isActive ? 'opacity-75' : 'text-blueGray-300'"></i>
             Inscription
           </a>
@@ -98,9 +98,8 @@
               ? 'text-red-600 hover:text-red-700'
               : 'text-blueGray-700 hover:text-blueGray-500'
           "
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-            <i class="fas fa-users text-blueGray-300 mr-2 text-sm" [ngClass]="
-            adminTontines.isActive ? 'opacity-75' : 'text-blueGray-300'"></i>
+            class="text-xs uppercase py-3 font-bold block">
+            <i class="fas fa-book text-blueGray-300 mr-2 text-sm" [ngClass]="adminTontines.isActive ? 'opacity-75' : 'text-blueGray-300'"></i>
             Tontines
           </a>
         </li>
@@ -114,8 +113,8 @@
               ? 'text-red-600 hover:text-red-700'
               : 'text-blueGray-700 hover:text-blueGray-500'
           "
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-            <i class="fas fa-users text-blueGray-300 mr-2 text-sm"></i>
+            class="text-xs uppercase py-3 font-bold block">
+            <i [ngClass]="adminCotisation.isActive ? 'opacity-75' : 'text-blueGray-300'" class="fas fa-wallet text-blueGray-300 mr-2 text-sm"></i>
             Cotisation journalière
           </a>
         </li>
@@ -129,8 +128,8 @@
               ? 'text-red-600 hover:text-red-700'
               : 'text-blueGray-700 hover:text-blueGray-500'
           "
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-            <i class="fas fa-wallet text-blueGray-300 mr-2 text-sm"></i>
+            class="text-xs uppercase py-3 font-bold block">
+            <i [ngClass]="adminBuy.isActive ? 'opacity-75' : 'text-blueGray-300'" class="fas fa-wallet text-blueGray-300 mr-2 text-sm"></i>
             Achat Tontine
           </a>
         </li>

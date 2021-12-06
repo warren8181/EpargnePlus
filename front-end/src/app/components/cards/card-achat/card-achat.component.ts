@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Assignment } from 'src/app/@models/assignment';
 import { TontineService } from 'src/app/services/tontine.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card-achat',
@@ -26,7 +27,7 @@ export class CardAchatComponent implements OnInit {
   countRows = null;
   assignment: Assignment;
 
-  constructor(private tontineService: TontineService) { }
+  constructor(private tontineService: TontineService, private toastr: ToastrService) { }
 
   ngOnInit() {
 
@@ -119,7 +120,8 @@ export class CardAchatComponent implements OnInit {
       (res) => {
         console.log(res);
       }
-    )
+    );
+    this.toastr.success('Achat de tontine effectuée avec succès');
 
   }
 
